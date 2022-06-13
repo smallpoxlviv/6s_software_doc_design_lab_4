@@ -21,13 +21,6 @@ async def process(file_url: str, background_tasks: BackgroundTasks):
     return f"Processing started. File: '{file_url}'"
 
 
-@app.get("/api/from_kafka")
-async def get_from_kafka():
-    topic = os.getenv('k_topic', default='test')
-    print('get from kafka')
-    return f"Data from kafka: {from_kafka(topic)}"
-
-
 async def main(file_url: str, strategy: Strategy):
     text = read_from_api(file_url)
     if strategy == Strategy.CONSOLE:
