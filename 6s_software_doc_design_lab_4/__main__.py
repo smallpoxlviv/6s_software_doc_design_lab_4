@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import FastAPI, BackgroundTasks
 
 from strategies import Strategy, SendTextConsole, SendTextKafka
-from utils import read_from_api, from_kafka
+from utils import read_from_api
 
 app = FastAPI()
 
