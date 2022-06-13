@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import FastAPI, BackgroundTasks
 
 from strategies import Strategy, SendTextConsole, SendTextKafka
-from utils import read_from_api
+from utils import read_from_api, from_kafka
 
 app = FastAPI()
 
@@ -19,6 +19,12 @@ async def process(file_url: str, background_tasks: BackgroundTasks):
     strategy = os.getenv('STRATEGY', default='console')
     background_tasks.add_task(main, file_url, strategy)
     return f"Processing started. File: '{file_url}'"
+
+
+@app.get("/api/from_kafka")
+async def get_from_kafka():
+    topic = os.getenv('k_topic', default='test')
+    return f"Data from kafka: {from_kafka(topic)}"
 
 
 async def main(file_url: str, strategy: Strategy):

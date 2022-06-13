@@ -5,7 +5,7 @@ from .send_text import SendText
 from kafka import KafkaProducer
 
 host = os.getenv('k_host', default='localhost')
-port = os.getenv('k_port', default='1234')
+port = os.getenv('k_port', default='9092')
 topic = os.getenv('k_topic', default='test')
 
 
