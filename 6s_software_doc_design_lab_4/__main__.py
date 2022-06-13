@@ -34,4 +34,4 @@ async def main(file_url: str, strategy: Strategy):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=8080, host='localhost')
+    uvicorn.run(app, port=8081, host='localhost')
