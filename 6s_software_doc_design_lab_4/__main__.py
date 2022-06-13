@@ -24,6 +24,7 @@ async def process(file_url: str, background_tasks: BackgroundTasks):
 @app.get("/api/from_kafka")
 async def get_from_kafka():
     topic = os.getenv('k_topic', default='test')
+    print('get from kafka')
     return f"Data from kafka: {from_kafka(topic)}"
 
 
