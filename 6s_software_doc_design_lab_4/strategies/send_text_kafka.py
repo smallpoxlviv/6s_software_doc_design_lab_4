@@ -14,4 +14,4 @@ class SendTextKafka(SendText):
     def send_text(cls, text_list: list):
         producer = KafkaProducer(bootstrap_servers=f'{host}:{port}')
         for text in text_list:
-            producer.send(topic, json.dumps(text))
+            producer.send(topic, json.dumps(text).encode('utf-8'))
