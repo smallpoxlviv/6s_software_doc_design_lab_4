@@ -21,7 +21,7 @@ async def process(file_url: str, background_tasks: BackgroundTasks):
     return f"Processing started. File: '{file_url}'"
 
 
-async def main(file_url: str, strategy: Strategy):
+def main(file_url: str, strategy: Strategy):
     text = read_from_api(file_url)
     if strategy == Strategy.CONSOLE:
         SendTextConsole.send_text(text)
@@ -34,4 +34,6 @@ async def main(file_url: str, strategy: Strategy):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=8081, host='localhost')
+    strategy = os.getenv('STRATEGY', default='console')
+    main('https://data.cityofnewyork.us/resource/nc67-uf89.json', strategy)
+    # uvicorn.run(app, port=8081, host='localhost')
