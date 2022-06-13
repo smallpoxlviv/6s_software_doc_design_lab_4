@@ -11,7 +11,7 @@ topic = os.getenv('k_topic', default='test')
 
 class SendTextKafka(SendText):
     @classmethod
-    def send_text(cls, text_list: list[dict]):
+    def send_text(cls, text_list: list):
         producer = KafkaProducer(bootstrap_servers=f'{host}:{port}')
         for text in text_list:
             producer.send(topic, json.dumps(text))
